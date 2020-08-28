@@ -8,7 +8,6 @@ class InventoryAllocator():
         self.orders = orders
         self.inventory_distribution = inventory
 
-    # output is name: {item: quantity}
     def shipment_details(self):
         shipments = []
         for i_d in self.inventory_distribution:
@@ -16,7 +15,6 @@ class InventoryAllocator():
                 if item in i_d["inventory"]:
                     if i_d["inventory"][item] == 0:
                         continue
-
                     if i_d["inventory"][item] >= self.orders[item]:
                         i_d["inventory"][item] -= self.orders[item]
                         shipments.append(
@@ -27,7 +25,6 @@ class InventoryAllocator():
                         shipments.append(
                             {i_d["name"]: {item: i_d["inventory"][item]}})
                         i_d["inventory"][item] = 0
-
         return shipments
 
 
